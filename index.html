@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Web Programming №1</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <style type="text/css">
+        .header {
+            text-align: center;
+            font: 30px monospace;
+            color: white;
+            width: 1518px;
+            height: 90px;
+            background-color: black;
+            position: relative;
+            /*box-shadow: 0 0 10px 5px rgba(16, 18, 30, 0.55);*/
+            border-radius: 0 0 20px 20px;
+            z-index: 1000;
+        }
+
+        body {
+            background: white;
+            margin-left: 50px;
+            height: 100%;
+        }
+
+        a {
+            margin: 0;
+            font: 45px monospace;
+            text-align: center;
+        }
+
+        .main {
+            top: 90px;
+            left: 13%;
+            width: 1200px;
+            height: 595px;
+            box-shadow: 0 0 10px 5px rgba(16, 18, 30, 0.55);
+            background-color: whitesmoke;
+            font-size: 30px;
+            position: absolute;
+        }
+
+        select {
+            text-align: center;
+            width: 200px;
+        }
+
+        .X_value input {
+            text-align: center;
+            width: 191px;
+        }
+
+        svg {
+            width: 350px;
+            height: 350px;
+            position: absolute;
+            left: 770px;
+            top: 85px;
+            border-radius: 20px 20px 20px 20px;
+            border: 5px solid #a81111;
+        }
+
+        .forUsers {
+            font-size: 30px;
+            height: 400px;
+            width: 648px;
+            top: 50px;
+            left: 50px;
+            color: white;
+            position: absolute;
+            background-color: black;
+            box-shadow: 0 0 50px 10px rgba(34, 41, 121, 0.55);
+            border-radius: 20px 20px 20px 20px;
+        }
+
+        .X_value {
+            position: relative;
+            margin-top: 60px;
+            margin-left: 63px;
+        }
+
+        .Y_value {
+            position: relative;
+            margin-top: 55px;
+            margin-left: 55px;
+        }
+
+        .R_value {
+            position: relative;
+            margin-top: 55px;
+            margin-left: 100px;
+        }
+        .R_options{
+            font-size:20px;
+            position: relative;
+            margin-left: 120px;
+        }
+
+        .results{
+            border-width: 10px;
+            border-radius: 10px;
+            border-color:  black ;
+        }
+
+        #reset, #check {
+            position: relative;
+            width: 200px;
+            height: 50px;
+            top: 50px;
+            /*box-shadow: 0 0 10px 5px rgba(238, 240, 20, 0.5);*/
+            border-radius: 20px 20px 20px 20px;
+            font: 18px "Century Gothic";
+            left: 10px;
+            margin-left: 90px;
+        }
+
+        #reset:hover, #check:hover{
+            background-color: gray;
+        }
+
+        #Y, #X {
+            text-align: center;
+            position: absolute;
+            border-radius: 20px 20px 20px 20px;
+            height: 30px;
+            outline: none;
+            right: 50px;
+        }
+    </style>
+</head>
+<body>
+<!-- Шапка -->
+<div class="header">
+    <span style="font-family: cursive ;text-decoration: none;color:white" ;>
+        Rudenko Ilya, P32101
+    </span>
+    <div style="font-family: cursive ;text-decoration: none;color:white" >Variant 1916</div>
+</div>
+
+<!-- Основная часть -->
+<div class="main">
+
+    <form id="input-form" action="php/server.php" class="validate_form" method="post"> <!-- координаты -->
+        <!-- Блок взаимодействия с пользователем -->
+        <div class="forUsers">
+            <!-- Блок для значения X -->
+            <div class="X_value">
+                <text>Enter X coordinate:</text>
+                <input type="text" id="X" name="X" class="x" placeholder="Value [-5...3]">
+            </div>
+
+            <!-- Блок для значения Y -->
+            <div class="Y_value">
+                <text>Select Y coordinate:</text>
+                <select id="Y" name="Y" size="1" class="y">
+                    <option value="-5">-5</option>
+                    <option value="-4">-4</option>
+                    <option value="-3">-3</option>
+                    <option value="-2">-2</option>
+                    <option value="-1">-1</option>
+                    <option selected value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+
+            <!-- Блок для значения R -->
+            <div class="R_value">
+                <text>Select R value:</text>
+                <span class="R_options">
+                    <label><input type="checkbox" name="R[]" class="R" value="1" onclick="onlyOne(this)">1</label>
+                    <label><input type="checkbox" name="R[]" class="R" value="2" onclick="onlyOne(this)">2</label>
+                    <label><input type="checkbox" name="R[]" class="R" value="3" onclick="onlyOne(this)">3</label>
+                    <label><input type="checkbox" name="R[]" class="R" value="4" onclick="onlyOne(this)">4</label>
+                    <label><input type="checkbox" name="R[]" class="R" value="5" onclick="onlyOne(this)">5</label>
+                </span>
+            </div>
+
+            <!-- Блок кнопок -->
+            <div class="buttons">
+                <input id="check" name="check" type="submit" value="Check" class="check_button">
+                <input id="reset" name="reset" type="reset" value="Reset" class="reset_button">
+            </div>
+        </div>
+    </form>
+
+    <!-- Блок графика -->
+    <svg xmlns="http://www.w3.org/2000/svg">
+
+        <!-- Оси координат -->
+        <line stroke="black" x1="0" y1="175" x2="350" y2="175"/>
+        <line stroke="black" x1="175" y1="0" x2="175" y2="350"/>
+
+        <!-- Стрелки к осям -->
+        <polygon points="175,0 170,15 180,15" stroke="black"></polygon>
+        <polygon points="350,175 335,170 335,180" stroke="black"></polygon>
+
+        <!-- Значения на осях -->
+        <text x="335" y="165" font-size="25">x</text>
+        <text x="185" y="15" font-size="25">y</text>
+
+        <!-- Метки на оси X -->
+        <line stroke="black" x1="45" y1="170" x2="45" y2="180"/>
+        <line stroke="black" x1="110" y1="170" x2="110" y2="180"/>
+        <line stroke="black" x1="240" y1="170" x2="240" y2="180"/>
+        <line stroke="black" x1="305" y1="170" x2="305" y2="180"/>
+
+        <!-- Метки на оси Y -->
+        <line stroke="black" x1="170" y1="45" x2="180" y2="45"/>
+        <line stroke="black" x1="170" y1="110" x2="180" y2="110"/>
+        <line stroke="black" x1="170" y1="240" x2="180" y2="240"/>
+        <line stroke="black" x1="170" y1="305" x2="180" y2="305"/>
+
+        <!-- Подписи к меткам на оси X -->
+        <text x="35" y="160" font-size="20">-R</text>
+        <text x="90" y="160" font-size="20">-R/2</text>
+        <text x="225" y="160" font-size="20">R/2</text>
+        <text x="305" y="160" font-size="20">R</text>
+
+        <!-- Подписи к меткам на оси Y -->
+        <text x="185" y="45" font-size="20">R</text>
+        <text x="185" y="115" font-size="20">R/2</text>
+        <text x="185" y="245" font-size="20">-R/2</text>
+        <text x="185" y="315" font-size="20">-R</text>
+
+        <!-- 3-я четверть -->
+        <polygon points="175,175 45,175 175,240" fill="blue" fill-opacity="0.4"></polygon>
+
+        <!-- 1-я четверть -->
+        <polygon points="175,175 175,110 240,175" fill="blue" fill-opacity="0.4"></polygon>
+        <path fill="blue" fill-opacity="0.4"
+              d="M175,110 A175,575 50 0,1 240,175" L 150,150 Z></path>
+
+        <!-- 2-я четверть -->
+        <polygon points="45,110 175,110 175,175 45,175" fill="blue" fill-opacity="0.4"></polygon>
+
+        <!-- Точка -->
+        <circle id="circle" cx="175" cy="175" r="5" fill="red" stroke-width="0"  />
+    </svg>
+
+    <!-- Блок таблицы результатов -->
+    <div>
+        <table id="result_table" border="1" cellpadding="0" cellspacing="0" width="100%" class="results"style="margin-top: 600px">
+            <!-- <tr id="table_header"> -->
+            <thead>
+            <th >X</th>
+            <th >Y</th>
+            <th >R</th>
+            <th >Hit fact</th>
+            <th >Current time</th>
+            <th >Script running time, ms</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--<script src="./js/checkBoxScript.js"></script>-->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="js/mainScript.js"></script>
+</body>
+</html>
